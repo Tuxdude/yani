@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani;
+package com.github.tuxdude.yani.fragment;
 
 
 import android.app.Activity;
@@ -21,6 +21,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.github.tuxdude.yani.R;
+import com.github.tuxdude.yani.fragment.BaseFragment;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -197,7 +200,7 @@ public class NavigationDrawerFragment extends Fragment {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(BaseFragment.FragmentType.valueAt(position));
         }
     }
 
@@ -277,6 +280,6 @@ public class NavigationDrawerFragment extends Fragment {
         /**
          * Called when an item in the navigation drawer is selected.
          */
-        void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemSelected(BaseFragment.FragmentType type);
     }
 }
