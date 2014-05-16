@@ -52,7 +52,7 @@ public class YaniActivity extends Activity
                 .commit();
     }
 
-    public void onSectionAttached(BaseFragment.FragmentType type) {
+    public void onFragmentAttached(BaseFragment.FragmentType type) {
         switch (type) {
             case FRAGMENT_STATUS:
                 mTitle = getString(R.string.title_status);
@@ -71,11 +71,6 @@ public class YaniActivity extends Activity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
-
-        TextView tv = (TextView) findViewById(R.id.section_label);
-        if (tv != null) {
-            tv.setText(mTitle);
-        }
     }
 
     @Override

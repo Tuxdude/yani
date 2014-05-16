@@ -28,6 +28,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((YaniActivity) activity).onSectionAttached(fragmentType);
+        ((YaniActivity) activity).onFragmentAttached(fragmentType);
     }
 }
