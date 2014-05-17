@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 
 import com.github.tuxdude.yani.YaniActivity;
+import com.github.tuxdude.yani.utils.Logger;
 
 public class BaseFragment extends Fragment {
 
@@ -27,6 +28,7 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
+        Logger.trace();
         super.onAttach(activity);
         ((YaniActivity) activity).onFragmentAttached(fragmentType);
     }
