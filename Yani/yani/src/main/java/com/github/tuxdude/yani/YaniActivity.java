@@ -15,8 +15,8 @@ import android.support.v4.widget.DrawerLayout;
 import com.github.tuxdude.yani.fragment.BaseFragment;
 import com.github.tuxdude.yani.fragment.NavigationDrawerFragment;
 import com.github.tuxdude.yani.fragment.YaniFragmentManager;
+import com.github.tuxdude.yani.network.NetworkBroadcastListener;
 import com.github.tuxdude.yani.utils.Logger;
-import com.github.tuxdude.yani.network.WifiBroadcastListener;
 
 
 public class YaniActivity extends Activity
@@ -63,7 +63,7 @@ public class YaniActivity extends Activity
         filter.addAction(WifiManager.NETWORK_IDS_CHANGED_ACTION);
         filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
         filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
-        registerReceiver(WifiBroadcastListener.getInstance(), filter);
+        registerReceiver(NetworkBroadcastListener.getInstance(), filter);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class YaniActivity extends Activity
         super.onPause();
 
         // Unregister receiver
-        unregisterReceiver(WifiBroadcastListener.getInstance());
+        unregisterReceiver(NetworkBroadcastListener.getInstance());
     }
 
     @Override

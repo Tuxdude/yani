@@ -8,9 +8,9 @@ import android.widget.Toast;
 
 import com.github.tuxdude.yani.utils.Logger;
 
-public class WifiBroadcastListener extends BroadcastReceiver {
+public class NetworkBroadcastListener extends BroadcastReceiver {
 
-    private static WifiBroadcastListener instance = null;
+    private static NetworkBroadcastListener instance = null;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -32,13 +32,13 @@ public class WifiBroadcastListener extends BroadcastReceiver {
         }
     }
 
-    private WifiBroadcastListener() {
+    private NetworkBroadcastListener() {
         // Empty constructor
     }
 
-    public static WifiBroadcastListener getInstance() {
+    public static NetworkBroadcastListener getInstance() {
         if (instance == null) {
-            instance = new WifiBroadcastListener();
+            instance = new NetworkBroadcastListener();
         }
         return instance;
     }
