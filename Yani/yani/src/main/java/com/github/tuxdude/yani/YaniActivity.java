@@ -4,19 +4,25 @@ import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.TextView;
 
 import com.github.tuxdude.yani.fragment.BaseFragment;
 import com.github.tuxdude.yani.fragment.NavigationDrawerFragment;
 import com.github.tuxdude.yani.fragment.YaniFragmentManager;
+import com.github.tuxdude.yani.utils.Logger;
+import com.github.tuxdude.yani.wifi.WifiBroadcastListener;
 
 
 public class YaniActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private static final String TAG = "YaniActivity";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -30,6 +36,7 @@ public class YaniActivity extends Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Logger.trace();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yani);
 
@@ -41,6 +48,30 @@ public class YaniActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Register receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+        filter.addAction(WifiManager.NETWORK_IDS_CHANGED_ACTION);
+        filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
+        filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
+        registerReceiver(WifiBroadcastListener.getInstance(), filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Unregister receiver
+        unregisterReceiver(WifiBroadcastListener.getInstance());
     }
 
     @Override
