@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 
 import com.github.tuxdude.yani.R;
 
-public class NetworkScannerFragment extends BaseFragment {
-    public NetworkScannerFragment() {
-        this.fragmentType = FragmentType.FRAGMENT_NETWORK_SCANNER;
+public class MobileFragment extends BaseFragment {
+
+    public MobileFragment() {
+        this.fragmentType = FragmentType.FRAGMENT_MOBILE;
     }
 
     @Override

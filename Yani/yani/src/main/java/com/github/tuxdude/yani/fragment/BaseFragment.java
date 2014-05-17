@@ -9,9 +9,9 @@ import com.github.tuxdude.yani.utils.Logger;
 public class BaseFragment extends Fragment {
 
     public enum FragmentType {
-        FRAGMENT_STATUS,
-        FRAGMENT_WIFI_TOOLS,
-        FRAGMENT_NETWORK_SCANNER;
+        FRAGMENT_CONNECTIONS,
+        FRAGMENT_MOBILE,
+        FRAGMENT_WIFI;
 
         public static FragmentType values[] = FragmentType.values();
 

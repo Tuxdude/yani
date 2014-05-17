@@ -16,10 +16,10 @@ import com.github.tuxdude.yani.utils.IpAddress;
 import com.github.tuxdude.yani.R;
 import com.github.tuxdude.yani.utils.Logger;
 
-public class StatusFragment extends BaseFragment {
+public class ConnectionsFragment extends BaseFragment {
 
-    public StatusFragment() {
-        this.fragmentType = FragmentType.FRAGMENT_STATUS;
+    public ConnectionsFragment() {
+        this.fragmentType = FragmentType.FRAGMENT_CONNECTIONS;
     }
 
     @Override

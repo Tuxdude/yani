@@ -21,21 +21,21 @@ public class YaniFragmentManager {
     public BaseFragment getFragment(BaseFragment.FragmentType type) {
         BaseFragment fragment = null;
         switch (type) {
-            case FRAGMENT_STATUS:
+            case FRAGMENT_CONNECTIONS:
                 if (statusFragment == null) {
-                    statusFragment = new StatusFragment();
+                    statusFragment = new ConnectionsFragment();
                 }
                 fragment = statusFragment;
                 break;
-            case FRAGMENT_WIFI_TOOLS:
+            case FRAGMENT_MOBILE:
                 if (wifiToolsFragment == null) {
-                    wifiToolsFragment = new WifiToolsFragment();
+                    wifiToolsFragment = new MobileFragment();
                 }
                 fragment = wifiToolsFragment;
                 break;
-            case FRAGMENT_NETWORK_SCANNER:
+            case FRAGMENT_WIFI:
                 if (networkScannerFragment == null) {
-                    networkScannerFragment = new NetworkScannerFragment();
+                    networkScannerFragment = new WifiFragment();
                 }
                 fragment = networkScannerFragment;
                 break;

@@ -7,10 +7,9 @@ import android.view.ViewGroup;
 
 import com.github.tuxdude.yani.R;
 
-public class WifiToolsFragment extends BaseFragment {
-
-    public WifiToolsFragment() {
-        this.fragmentType = FragmentType.FRAGMENT_WIFI_TOOLS;
+public class WifiFragment extends BaseFragment {
+    public WifiFragment() {
+        this.fragmentType = FragmentType.FRAGMENT_WIFI;
     }
 
     @Override

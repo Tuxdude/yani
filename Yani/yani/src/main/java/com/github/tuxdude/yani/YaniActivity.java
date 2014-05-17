@@ -85,13 +85,13 @@ public class YaniActivity extends Activity
 
     public void onFragmentAttached(BaseFragment.FragmentType type) {
         switch (type) {
-            case FRAGMENT_STATUS:
+            case FRAGMENT_CONNECTIONS:
                 mTitle = getString(R.string.title_status);
                 break;
-            case FRAGMENT_WIFI_TOOLS:
+            case FRAGMENT_MOBILE:
                 mTitle = getString(R.string.title_wifi_tools);
                 break;
-            case FRAGMENT_NETWORK_SCANNER:
+            case FRAGMENT_WIFI:
                 mTitle = getString(R.string.title_network_scanner);
                 break;
         }
