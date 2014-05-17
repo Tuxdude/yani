@@ -16,7 +16,7 @@ import com.github.tuxdude.yani.fragment.BaseFragment;
 import com.github.tuxdude.yani.fragment.NavigationDrawerFragment;
 import com.github.tuxdude.yani.fragment.YaniFragmentManager;
 import com.github.tuxdude.yani.utils.Logger;
-import com.github.tuxdude.yani.wifi.WifiBroadcastListener;
+import com.github.tuxdude.yani.network.WifiBroadcastListener;
 
 
 public class YaniActivity extends Activity

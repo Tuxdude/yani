@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.wifi;
+package com.github.tuxdude.yani.network;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
