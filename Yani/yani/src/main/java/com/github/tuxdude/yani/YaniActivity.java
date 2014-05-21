@@ -76,6 +76,7 @@ public class YaniActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(BaseFragment.FragmentType type) {
+        Logger.trace();
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -99,7 +100,7 @@ public class YaniActivity extends Activity
 
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
