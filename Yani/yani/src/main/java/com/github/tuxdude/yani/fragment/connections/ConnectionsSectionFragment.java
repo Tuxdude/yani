@@ -18,21 +18,23 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.BaseFragment;
+import com.github.tuxdude.yani.fragment.BaseSectionFragment;
+import com.github.tuxdude.yani.fragment.FragmentType;
 import com.github.tuxdude.yani.utils.Logger;
 
-public class ConnectionsFragment extends BaseFragment {
+public class ConnectionsSectionFragment extends BaseSectionFragment {
 
     private ViewPager mViewPager = null;
     private PagerSlidingTabStrip mTabs = null;
 
-    public static ConnectionsFragment newInstance() {
+    public static ConnectionsSectionFragment newInstance() {
         Logger.trace();
-        return new ConnectionsFragment();
+        return new ConnectionsSectionFragment();
     }
 
-    public ConnectionsFragment() {
-        this.fragmentType = FragmentType.FRAGMENT_CONNECTIONS;
+    @Override
+    public FragmentType getFragmentType() {
+        return FragmentType.FRAGMENT_CONNECTIONS;
     }
 
     class TabsPagerAdapter extends FragmentPagerAdapter {
@@ -194,11 +196,5 @@ public class ConnectionsFragment extends BaseFragment {
     public void onDestroy() {
         Logger.trace();
         super.onDestroy();
-    }
-
-    @Override
-    public void onDetach() {
-        Logger.trace();
-        super.onDetach();
     }
 }

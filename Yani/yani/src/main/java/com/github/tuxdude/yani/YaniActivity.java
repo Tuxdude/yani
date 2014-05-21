@@ -11,9 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import com.github.tuxdude.yani.fragment.BaseFragment;
+import com.github.tuxdude.yani.fragment.IFragmentInfo;
+import com.github.tuxdude.yani.fragment.SectionFragmentsManager;
 import com.github.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
-import com.github.tuxdude.yani.fragment.YaniFragmentManager;
 import com.github.tuxdude.yani.network.NetworkBroadcastListener;
 import com.github.tuxdude.yani.utils.Logger;
 
@@ -74,27 +74,22 @@ public class YaniActivity extends FragmentActivity
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(BaseFragment.FragmentType type) {
+    public void onNavigationDrawerItemSelected(int position) {
         Logger.trace();
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, YaniFragmentManager.getManager().getFragment(type))
+                .replace(R.id.container, SectionFragmentsManager.getManager().getFragment(position))
                 .commit();
     }
 
-    public void onFragmentAttached(BaseFragment.FragmentType type) {
+    public void onFragmentAttached(IFragmentInfo fragmentInfo) {
         Logger.trace();
-        switch (type) {
-            case FRAGMENT_CONNECTIONS:
-                mTitle = getString(R.string.title_status);
-                break;
-            case FRAGMENT_MOBILE:
-                mTitle = getString(R.string.title_wifi_tools);
-                break;
-            case FRAGMENT_WIFI:
-                mTitle = getString(R.string.title_network_scanner);
-                break;
+        if (fragmentInfo != null) {
+            mTitle = fragmentInfo.getFragmentTitle();
+        }
+        else {
+            Logger.e("onFragmentAttached() received null fragmentInfo, unable to set Title");
         }
     }
 
