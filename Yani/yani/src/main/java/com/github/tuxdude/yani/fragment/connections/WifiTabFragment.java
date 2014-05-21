@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment;
+package com.github.tuxdude.yani.fragment.connections;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -17,11 +17,11 @@ import com.github.tuxdude.yani.R;
 import com.github.tuxdude.yani.utils.IpAddress;
 import com.github.tuxdude.yani.utils.Logger;
 
-public class ConnectionsWifiFragment extends Fragment {
+public class WifiTabFragment extends Fragment {
 
-    public static ConnectionsWifiFragment newInstance() {
+    public static WifiTabFragment newInstance() {
         Logger.trace();
-        return new ConnectionsWifiFragment();
+        return new WifiTabFragment();
     }
 
     @Override

@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
 import com.github.tuxdude.yani.fragment.BaseFragment;
-import com.github.tuxdude.yani.fragment.NavigationDrawerFragment;
+import com.github.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
 import com.github.tuxdude.yani.fragment.YaniFragmentManager;
 import com.github.tuxdude.yani.network.NetworkBroadcastListener;
 import com.github.tuxdude.yani.utils.Logger;

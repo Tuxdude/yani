@@ -1,5 +1,9 @@
 package com.github.tuxdude.yani.fragment;
 
+import com.github.tuxdude.yani.fragment.connections.ConnectionsFragment;
+import com.github.tuxdude.yani.fragment.mobile.MobileFragment;
+import com.github.tuxdude.yani.fragment.wifi.WifiFragment;
+
 public class YaniFragmentManager {
 
     private static YaniFragmentManager manager = null;

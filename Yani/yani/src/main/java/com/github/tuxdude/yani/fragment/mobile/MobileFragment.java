@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment;
+package com.github.tuxdude.yani.fragment.mobile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.tuxdude.yani.R;
+import com.github.tuxdude.yani.fragment.BaseFragment;
 
-public class WifiFragment extends BaseFragment {
-    public WifiFragment() {
-        this.fragmentType = FragmentType.FRAGMENT_WIFI;
+public class MobileFragment extends BaseFragment {
+
+    public MobileFragment() {
+        this.fragmentType = FragmentType.FRAGMENT_MOBILE;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment;
+package com.github.tuxdude.yani.fragment.connections;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.github.tuxdude.yani.R;
+import com.github.tuxdude.yani.fragment.BaseFragment;
 import com.github.tuxdude.yani.utils.Logger;
 
 public class ConnectionsFragment extends BaseFragment {
@@ -45,7 +46,7 @@ public class ConnectionsFragment extends BaseFragment {
             Logger.d("getItem() " + position);
             // Return the Fragment which corresponds to the tab at position
             switch (position) {
-                default: return ConnectionsWifiFragment.newInstance();
+                default: return WifiTabFragment.newInstance();
             }
         }
 
