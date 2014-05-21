@@ -1,25 +1,63 @@
 package com.github.tuxdude.yani.fragment;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.DhcpInfo;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.github.tuxdude.yani.utils.IpAddress;
+import com.astuetz.PagerSlidingTabStrip;
 import com.github.tuxdude.yani.R;
 import com.github.tuxdude.yani.utils.Logger;
 
 public class ConnectionsFragment extends BaseFragment {
 
+    private ViewPager mViewPager = null;
+    private PagerSlidingTabStrip mTabs = null;
+
+    public static ConnectionsFragment newInstance() {
+        Logger.trace();
+        return new ConnectionsFragment();
+    }
+
     public ConnectionsFragment() {
         this.fragmentType = FragmentType.FRAGMENT_CONNECTIONS;
+    }
+
+    class TabsPagerAdapter extends FragmentPagerAdapter {
+
+        public TabsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Logger.d("getItem() " + position);
+            // Return the Fragment which corresponds to the tab at position
+            switch (position) {
+                default: return ConnectionsWifiFragment.newInstance();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Wifi";
+        }
     }
 
     @Override
@@ -32,51 +70,93 @@ public class ConnectionsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Logger.trace();
-        View rootView = inflater.inflate(R.layout.fragment_yani, container, false);
+        return inflater.inflate(R.layout.fragment_connections, container, false);
+    }
 
-        TextView tv = (TextView)rootView.findViewById(R.id.section_label);
-        if (tv != null) {
-            tv.append("Connection Status\n");
-            ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        Logger.trace();
 
-            if (connectivityManager != null) {
-                NetworkInfo networkInfoList[] = connectivityManager.getAllNetworkInfo();
-                if (networkInfoList != null) {
-                    for (NetworkInfo networkInfo : networkInfoList) {
-                        tv.append(networkInfo.toString() + "\n");
-                    }
-                }
-            }
+        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        mViewPager.setAdapter(new TabsPagerAdapter(getChildFragmentManager()));
 
-            WifiManager wifiManager = (WifiManager)getActivity().getSystemService(Context.WIFI_SERVICE);
-            if (wifiManager != null) {
-                if (wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED) {
+        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+                .getDisplayMetrics());
+        mViewPager.setPageMargin(pageMargin);
 
-                    WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                    if (wifiInfo != null) {
-                        tv.append("SSID: " + wifiInfo.getSSID() + "\n");
-                        tv.append("Link Speed: " + wifiInfo.getLinkSpeed() + " " + WifiInfo.LINK_SPEED_UNITS + "\n");
-                        tv.append("IP Address: " + new IpAddress(wifiInfo.getIpAddress()) + "\n");
-                        tv.append("MAC Address: " + wifiInfo.getMacAddress() + "\n");
-                    }
+        mTabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
+        mTabs.setViewPager(mViewPager);
 
-                    DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
-                    if (dhcpInfo != null) {
-                        tv.append("DHCP Info:\n");
-                        tv.append("IP Address: " + new IpAddress(dhcpInfo.ipAddress) + "\n");
-                        tv.append("Netmask: " + new IpAddress(dhcpInfo.netmask) + "\n");
-                        tv.append("Gateway: " + new IpAddress(dhcpInfo.gateway) + "\n");
-                        tv.append("DNS1: " + new IpAddress(dhcpInfo.dns1) + "\n");
-                        tv.append("DNS2: " + new IpAddress(dhcpInfo.dns2) + "\n");
-                        tv.append("DHCP Server IP: " + new IpAddress(dhcpInfo.serverAddress) + "\n");
-                    }
-                } else {
-                    tv.append("Wifi is not enabled\n");
-                }
-            }
+        changeColor(mCurrentColor);
+    }
+
+    private int mCurrentColor = 0xFF666666;
+    private Drawable oldBackground = null;
+    private final Handler handler = new Handler();
+
+    private Drawable.Callback drawableCallback = new Drawable.Callback() {
+        @Override
+        public void invalidateDrawable(Drawable who) {
+            getActivity().getActionBar().setBackgroundDrawable(who);
         }
 
-        return rootView;
+        @Override
+        public void scheduleDrawable(Drawable who, Runnable what, long when) {
+            handler.postAtTime(what, when);
+        }
+
+        @Override
+        public void unscheduleDrawable(Drawable who, Runnable what) {
+            handler.removeCallbacks(what);
+        }
+    };
+
+
+    private void changeColor(int newColor) {
+
+        mTabs.setIndicatorColor(newColor);
+
+        // change ActionBar color just if an ActionBar is available
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+
+            Drawable colorDrawable = new ColorDrawable(newColor);
+            Drawable bottomDrawable = getResources().getDrawable(R.drawable.actionbar_bottom);
+            LayerDrawable ld = new LayerDrawable(new Drawable[] { colorDrawable, bottomDrawable });
+
+            if (oldBackground == null) {
+
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    ld.setCallback(drawableCallback);
+                } else {
+                    getActivity().getActionBar().setBackgroundDrawable(ld);
+                }
+
+            } else {
+
+                TransitionDrawable td = new TransitionDrawable(new Drawable[] { oldBackground, ld });
+
+                // workaround for broken ActionBarContainer drawable handling on
+                // pre-API 17 builds
+                // https://github.com/android/platform_frameworks_base/commit/a7cc06d82e45918c37429a59b14545c6a57db4e4
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    td.setCallback(drawableCallback);
+                } else {
+                    getActivity().getActionBar().setBackgroundDrawable(td);
+                }
+
+                td.startTransition(200);
+
+            }
+
+            oldBackground = ld;
+
+            // http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
+            getActivity().getActionBar().setDisplayShowTitleEnabled(false);
+            getActivity().getActionBar().setDisplayShowTitleEnabled(true);
+
+        }
+
+        mCurrentColor = newColor;
     }
 
     @Override

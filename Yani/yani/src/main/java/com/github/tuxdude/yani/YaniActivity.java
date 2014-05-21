@@ -38,7 +38,7 @@ public class YaniActivity extends FragmentActivity
         setContentView(R.layout.activity_yani);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
@@ -49,6 +49,7 @@ public class YaniActivity extends FragmentActivity
 
     @Override
     protected void onResume() {
+        Logger.trace();
         super.onResume();
 
         // Register receiver
@@ -65,6 +66,7 @@ public class YaniActivity extends FragmentActivity
 
     @Override
     protected void onPause() {
+        Logger.trace();
         super.onPause();
 
         // Unregister receiver
@@ -73,6 +75,7 @@ public class YaniActivity extends FragmentActivity
 
     @Override
     public void onNavigationDrawerItemSelected(BaseFragment.FragmentType type) {
+        Logger.trace();
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -81,6 +84,7 @@ public class YaniActivity extends FragmentActivity
     }
 
     public void onFragmentAttached(BaseFragment.FragmentType type) {
+        Logger.trace();
         switch (type) {
             case FRAGMENT_CONNECTIONS:
                 mTitle = getString(R.string.title_status);
@@ -95,6 +99,7 @@ public class YaniActivity extends FragmentActivity
     }
 
     public void restoreActionBar() {
+        Logger.trace();
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
@@ -103,6 +108,7 @@ public class YaniActivity extends FragmentActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Logger.trace();
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
@@ -116,6 +122,7 @@ public class YaniActivity extends FragmentActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Logger.trace();
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

@@ -23,7 +23,7 @@ public class YaniFragmentManager {
         switch (type) {
             case FRAGMENT_CONNECTIONS:
                 if (statusFragment == null) {
-                    statusFragment = new ConnectionsFragment();
+                    statusFragment = ConnectionsFragment.newInstance();
                 }
                 fragment = statusFragment;
                 break;

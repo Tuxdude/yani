@@ -15,7 +15,7 @@ public class WifiFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_yani, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_connections_wifi, container, false);
         return rootView;
     }
 }
