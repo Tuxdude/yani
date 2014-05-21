@@ -7,9 +7,6 @@ import com.github.tuxdude.yani.fragment.wifi.WifiFragment;
 public class YaniFragmentManager {
 
     private static YaniFragmentManager manager = null;
-    private BaseFragment statusFragment = null;
-    private BaseFragment wifiToolsFragment = null;
-    private BaseFragment networkScannerFragment = null;
 
     public static YaniFragmentManager getManager() {
         if (manager == null) {
@@ -26,22 +23,13 @@ public class YaniFragmentManager {
         BaseFragment fragment = null;
         switch (type) {
             case FRAGMENT_CONNECTIONS:
-                if (statusFragment == null) {
-                    statusFragment = ConnectionsFragment.newInstance();
-                }
-                fragment = statusFragment;
+                fragment = ConnectionsFragment.newInstance();
                 break;
             case FRAGMENT_MOBILE:
-                if (wifiToolsFragment == null) {
-                    wifiToolsFragment = new MobileFragment();
-                }
-                fragment = wifiToolsFragment;
+                fragment = new MobileFragment();
                 break;
             case FRAGMENT_WIFI:
-                if (networkScannerFragment == null) {
-                    networkScannerFragment = new WifiFragment();
-                }
-                fragment = networkScannerFragment;
+                fragment = new WifiFragment();
                 break;
             default:
                 break;
