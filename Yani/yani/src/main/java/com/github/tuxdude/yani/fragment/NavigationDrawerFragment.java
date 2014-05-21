@@ -1,9 +1,9 @@
 package com.github.tuxdude.yani.fragment;
 
 
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
+import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.BaseFragment;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

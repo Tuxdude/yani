@@ -1,7 +1,7 @@
 package com.github.tuxdude.yani.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import com.github.tuxdude.yani.YaniActivity;
 import com.github.tuxdude.yani.utils.Logger;

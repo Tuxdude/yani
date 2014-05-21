@@ -1,13 +1,12 @@
 package com.github.tuxdude.yani;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
@@ -19,10 +18,8 @@ import com.github.tuxdude.yani.network.NetworkBroadcastListener;
 import com.github.tuxdude.yani.utils.Logger;
 
 
-public class YaniActivity extends Activity
+public class YaniActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
-    private static final String TAG = "YaniActivity";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -77,7 +74,7 @@ public class YaniActivity extends Activity
     @Override
     public void onNavigationDrawerItemSelected(BaseFragment.FragmentType type) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, YaniFragmentManager.getManager().getFragment(type))
                 .commit();
