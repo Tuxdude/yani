@@ -1,9 +1,7 @@
-package com.github.tuxdude.yani.fragment.connections;
+package com.github.tuxdude.yani.fragment.connections.tab;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -31,17 +29,7 @@ public class WifiTabFragment extends Fragment {
 
         TextView tv = (TextView)rootView.findViewById(R.id.section_label);
         if (tv != null) {
-            tv.append("Connection Status\n");
-            ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            if (connectivityManager != null) {
-                NetworkInfo networkInfoList[] = connectivityManager.getAllNetworkInfo();
-                if (networkInfoList != null) {
-                    for (NetworkInfo networkInfo : networkInfoList) {
-                        tv.append(networkInfo.toString() + "\n");
-                    }
-                }
-            }
+            tv.append("Wifi Status\n");
 
             WifiManager wifiManager = (WifiManager)getActivity().getSystemService(Context.WIFI_SERVICE);
             if (wifiManager != null) {

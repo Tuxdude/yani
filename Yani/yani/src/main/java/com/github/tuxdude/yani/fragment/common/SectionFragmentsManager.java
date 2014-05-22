@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment;
+package com.github.tuxdude.yani.fragment.common;
 
 import android.content.Context;
 
@@ -25,46 +25,46 @@ public class SectionFragmentsManager {
         // Constructor
     }
 
-    public static String getFragmentTitle(Context context, FragmentType type) {
+    public static String getSectionTitle(Context context, SectionFragmentType type) {
         String title = null;
         if (context != null) {
             switch (type) {
-                case FRAGMENT_CONNECTIONS:
+                case SECTION_CONNECTIONS:
                     title = context.getString(R.string.title_section_connections);
                     break;
-                case FRAGMENT_MOBILE:
+                case SECTION_MOBILE:
                     title = context.getString(R.string.title_section_mobile);
                     break;
-                case FRAGMENT_WIFI:
+                case SECTION_WIFI:
                     title = context.getString(R.string.title_section_wifi);
                     break;
             }
         }
         else {
-            Logger.e("getFragmentTitle() null context");
+            Logger.e("getSectionTitle() null context");
         }
         return title;
     }
 
-    public static ArrayList<String> getFragmentTitles(Context context) {
+    public static ArrayList<String> getSectionTitles(Context context) {
         ArrayList<String> titles = new ArrayList<String>();
-        FragmentType[] types = FragmentType.getValues();
-        for (FragmentType type : types) {
-            titles.add(getFragmentTitle(context, type));
+        SectionFragmentType[] types = SectionFragmentType.getValues();
+        for (SectionFragmentType type : types) {
+            titles.add(getSectionTitle(context, type));
         }
         return titles;
     }
 
     public BaseSectionFragment getFragment(int position) {
         BaseSectionFragment fragment = null;
-        switch (FragmentType.valueAt(position)) {
-            case FRAGMENT_CONNECTIONS:
+        switch (SectionFragmentType.valueAt(position)) {
+            case SECTION_CONNECTIONS:
                 fragment = ConnectionsSectionFragment.newInstance();
                 break;
-            case FRAGMENT_MOBILE:
+            case SECTION_MOBILE:
                 fragment = new MobileSectionFragment();
                 break;
-            case FRAGMENT_WIFI:
+            case SECTION_WIFI:
                 fragment = new WifiSectionFragment();
                 break;
             default:

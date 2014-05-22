@@ -23,7 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.SectionFragmentsManager;
+import com.github.tuxdude.yani.fragment.common.SectionFragmentsManager;
 import com.github.tuxdude.yani.utils.Logger;
 
 import java.util.ArrayList;
@@ -110,7 +110,7 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
         if (mTitles == null) {
-            mTitles = SectionFragmentsManager.getFragmentTitles(getActivity());
+            mTitles = SectionFragmentsManager.getSectionTitles(getActivity());
             Logger.d("Titles: " + mTitles);
         }
 

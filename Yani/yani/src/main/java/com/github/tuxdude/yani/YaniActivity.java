@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import com.github.tuxdude.yani.fragment.IFragmentInfo;
-import com.github.tuxdude.yani.fragment.SectionFragmentsManager;
+import com.github.tuxdude.yani.fragment.common.ISectionFragment;
+import com.github.tuxdude.yani.fragment.common.SectionFragmentsManager;
 import com.github.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
 import com.github.tuxdude.yani.network.NetworkBroadcastListener;
 import com.github.tuxdude.yani.utils.Logger;
@@ -83,10 +83,10 @@ public class YaniActivity extends FragmentActivity
                 .commit();
     }
 
-    public void onFragmentAttached(IFragmentInfo fragmentInfo) {
+    public void onFragmentAttached(ISectionFragment fragmentInfo) {
         Logger.trace();
         if (fragmentInfo != null) {
-            mTitle = fragmentInfo.getFragmentTitle();
+            mTitle = fragmentInfo.getSectionTitle();
         }
         else {
             Logger.e("onFragmentAttached() received null fragmentInfo, unable to set Title");

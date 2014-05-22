@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment;
+package com.github.tuxdude.yani.fragment.common;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import com.github.tuxdude.yani.YaniActivity;
 import com.github.tuxdude.yani.utils.Logger;
 
-public abstract class BaseSectionFragment extends Fragment implements IFragmentInfo {
+public abstract class BaseSectionFragment extends Fragment implements ISectionFragment {
 
     protected Context mContext = null;
 
@@ -29,7 +29,7 @@ public abstract class BaseSectionFragment extends Fragment implements IFragmentI
     }
 
     @Override
-    public final String getFragmentTitle() {
-        return SectionFragmentsManager.getFragmentTitle(mContext, getFragmentType());
+    public final String getSectionTitle() {
+        return SectionFragmentsManager.getSectionTitle(mContext, getFragmentType());
     }
 }

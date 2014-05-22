@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.BaseSectionFragment;
-import com.github.tuxdude.yani.fragment.FragmentType;
+import com.github.tuxdude.yani.fragment.common.BaseSectionFragment;
+import com.github.tuxdude.yani.fragment.common.SectionFragmentType;
 
 public class MobileSectionFragment extends BaseSectionFragment {
 
@@ -19,7 +19,7 @@ public class MobileSectionFragment extends BaseSectionFragment {
     }
 
     @Override
-    public FragmentType getFragmentType() {
-        return FragmentType.FRAGMENT_MOBILE;
+    public SectionFragmentType getFragmentType() {
+        return SectionFragmentType.SECTION_MOBILE;
     }
 }

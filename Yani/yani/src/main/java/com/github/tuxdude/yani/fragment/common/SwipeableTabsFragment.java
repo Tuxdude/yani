@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment;
+package com.github.tuxdude.yani.fragment.common;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,12 +16,11 @@ import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.connections.WifiTabFragment;
 import com.github.tuxdude.yani.utils.Logger;
 
-public abstract class SwipeableTabsFragment extends BaseSectionFragment {
 
-    private ViewPager mViewPager = null;
+public abstract class SwipeableTabsFragment extends BaseSectionFragment implements ITabsManager {
+
     private PagerSlidingTabStrip mTabs = null;
 
     class TabsPagerAdapter extends FragmentPagerAdapter {
@@ -34,19 +33,17 @@ public abstract class SwipeableTabsFragment extends BaseSectionFragment {
         public Fragment getItem(int position) {
             Logger.d("getItem() " + position);
             // Return the Fragment which corresponds to the tab at position
-            switch (position) {
-                default: return WifiTabFragment.newInstance();
-            }
+            return getTab(position);
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return getTabCount();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Wifi";
+            return getTabTitle(position);
         }
     }
 
@@ -122,15 +119,15 @@ public abstract class SwipeableTabsFragment extends BaseSectionFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Logger.trace();
-        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new TabsPagerAdapter(getChildFragmentManager()));
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        viewPager.setAdapter(new TabsPagerAdapter(getChildFragmentManager()));
 
         final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
                 .getDisplayMetrics());
-        mViewPager.setPageMargin(pageMargin);
+        viewPager.setPageMargin(pageMargin);
 
         mTabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
-        mTabs.setViewPager(mViewPager);
+        mTabs.setViewPager(viewPager);
 
         changeColor(mCurrentColor);
 

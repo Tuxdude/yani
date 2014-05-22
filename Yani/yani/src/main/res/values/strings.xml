@@ -4,6 +4,10 @@
     <string name="app_name">Yani</string>
 
     <string name="title_section_connections">Connections</string>
+    <string name="title_tab_connections_wifi">Wifi</string>
+    <string name="title_tab_connections_mobile">Mobile</string>
+    <string name="title_tab_connections_bluetooth">Bluetooth</string>
+
     <string name="title_section_mobile">Mobile</string>
     <string name="title_section_wifi">Wifi</string>
 
