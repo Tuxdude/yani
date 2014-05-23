@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
 import com.github.tuxdude.yani.R;
+import com.github.tuxdude.yani.fragment.common.BaseSectionFragment;
 import com.github.tuxdude.yani.fragment.common.ISectionFragment;
 import com.github.tuxdude.yani.fragment.common.SectionFragmentsManager;
 import com.github.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
@@ -20,7 +21,8 @@ import com.github.tuxdude.yani.utils.Logger;
 
 
 public class MainActivity extends FragmentActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,
+        BaseSectionFragment.FragmentEventsListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -84,6 +86,7 @@ public class MainActivity extends FragmentActivity
                 .commit();
     }
 
+    @Override
     public void onFragmentAttached(ISectionFragment fragmentInfo) {
         Logger.trace();
         if (fragmentInfo != null) {

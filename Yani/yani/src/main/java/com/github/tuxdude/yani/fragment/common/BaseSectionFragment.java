@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.github.tuxdude.yani.activity.MainActivity;
 import com.github.tuxdude.yani.utils.Logger;
 
 public abstract class BaseSectionFragment extends Fragment implements ISectionFragment {
+
+    public interface FragmentEventsListener {
+        public void onFragmentAttached(ISectionFragment fragmentInfo);
+    }
 
     protected Context mContext = null;
 
@@ -17,8 +20,13 @@ public abstract class BaseSectionFragment extends Fragment implements ISectionFr
         super.onAttach(activity);
         mContext = activity;
 
-        // FIXME
-        ((MainActivity) activity).onFragmentAttached(this);
+        if (activity instanceof FragmentEventsListener) {
+            ((FragmentEventsListener)activity).onFragmentAttached(this);
+        }
+        else {
+            throw new ClassCastException(activity.toString() +
+                " must implement FragmentEventsListener");
+        }
     }
 
     @Override
