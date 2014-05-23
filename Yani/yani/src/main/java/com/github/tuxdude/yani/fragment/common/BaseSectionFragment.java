@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.github.tuxdude.yani.YaniActivity;
+import com.github.tuxdude.yani.activity.MainActivity;
 import com.github.tuxdude.yani.utils.Logger;
 
 public abstract class BaseSectionFragment extends Fragment implements ISectionFragment {
@@ -18,7 +18,7 @@ public abstract class BaseSectionFragment extends Fragment implements ISectionFr
         mContext = activity;
 
         // FIXME
-        ((YaniActivity) activity).onFragmentAttached(this);
+        ((MainActivity) activity).onFragmentAttached(this);
     }
 
     @Override

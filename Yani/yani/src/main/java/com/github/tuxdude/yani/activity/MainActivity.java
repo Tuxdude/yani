@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani;
+package com.github.tuxdude.yani.activity;
 
 import android.app.ActionBar;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
+import com.github.tuxdude.yani.R;
 import com.github.tuxdude.yani.fragment.common.ISectionFragment;
 import com.github.tuxdude.yani.fragment.common.SectionFragmentsManager;
 import com.github.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
@@ -18,7 +19,7 @@ import com.github.tuxdude.yani.network.NetworkBroadcastListener;
 import com.github.tuxdude.yani.utils.Logger;
 
 
-public class YaniActivity extends FragmentActivity
+public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -35,7 +36,7 @@ public class YaniActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         Logger.trace();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yani);
+        setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
