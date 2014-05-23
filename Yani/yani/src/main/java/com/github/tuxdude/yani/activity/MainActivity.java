@@ -1,12 +1,14 @@
 package com.github.tuxdude.yani.activity;
 
 import android.app.ActionBar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
@@ -33,6 +35,8 @@ public class MainActivity extends FragmentActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private static final String CURRENT_SECTION_TAG = "CURRENT_SECTION_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +81,34 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        Logger.trace();
+    public void onNavigationDrawerItemSelected(int oldPosition, int newPosition) {
+        Logger.d("onNavigationDrawerItemSelected oldPosition: " +
+                oldPosition + " newPosition: " + newPosition);
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, SectionFragmentsManager.getManager().getFragment(position))
-                .commit();
+        Fragment fragment = null;
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        if (oldPosition == newPosition && newPosition >= 0) {
+            Logger.d("Trying to reuse old fragment");
+            fragment = fragmentManager.findFragmentByTag(CURRENT_SECTION_TAG);
+            if (fragment == null) {
+                Logger.d("Could not find the fragment by tag");
+            }
+        }
+
+        if (null == fragment) {
+            fragment = SectionFragmentsManager.getManager().getFragment(newPosition);
+            transaction.replace(R.id.container, fragment, CURRENT_SECTION_TAG);
+        }
+
+        transaction.commit();
+
+        if (oldPosition == newPosition && newPosition >= 0) {
+            restoreActionBar();
+        }
     }
 
     @Override

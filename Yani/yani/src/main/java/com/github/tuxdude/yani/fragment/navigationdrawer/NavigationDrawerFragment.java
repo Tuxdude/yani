@@ -60,10 +60,12 @@ public class NavigationDrawerFragment extends Fragment {
     private ListView mDrawerListView;
     private View mFragmentContainerView;
 
-    private int mCurrentSelectedPosition = 0;
+    private int mCurrentSelectedPosition = -1;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
     private ArrayList<String> mTitles = null;
+
+    private static final int DEFAULT_SELECTED_POSITION = 0;
 
     public NavigationDrawerFragment() {
         Logger.trace();
@@ -84,8 +86,12 @@ public class NavigationDrawerFragment extends Fragment {
             mFromSavedInstanceState = true;
         }
 
-        // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        if (mCurrentSelectedPosition == -1) {
+            selectItem(DEFAULT_SELECTED_POSITION);
+        }
+        else {
+            selectItem(mCurrentSelectedPosition);
+        }
     }
 
     @Override
@@ -207,16 +213,19 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
         Logger.trace();
-        mCurrentSelectedPosition = position;
+
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
         }
+
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
+
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(mCurrentSelectedPosition, position);
         }
+        mCurrentSelectedPosition = position;
     }
 
     @Override
@@ -303,6 +312,6 @@ public class NavigationDrawerFragment extends Fragment {
         /**
          * Called when an item in the navigation drawer is selected.
          */
-        void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemSelected(int oldPosition, int newPosition);
     }
 }
