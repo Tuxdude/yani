@@ -23,7 +23,7 @@ public class BluetoothTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Logger.trace();
-        View rootView = inflater.inflate(R.layout.fragment_connections_wifi, container, false);
+        View rootView = inflater.inflate(R.layout.tab_connections_bluetooth, container, false);
 
         TextView tv = (TextView)rootView.findViewById(R.id.section_label);
         if (tv != null) {

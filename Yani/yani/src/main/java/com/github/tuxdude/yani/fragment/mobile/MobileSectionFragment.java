@@ -14,7 +14,7 @@ public class MobileSectionFragment extends BaseSectionFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_connections_wifi, container, false);
+        View rootView = inflater.inflate(R.layout.section_mobile, container, false);
         return rootView;
     }
 

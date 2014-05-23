@@ -38,7 +38,7 @@ public class ConnectionsSectionFragment extends SwipeableTabsFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Logger.trace();
-        return inflater.inflate(R.layout.fragment_connections, container, false);
+        return inflater.inflate(R.layout.section_connections, container, false);
     }
 
     @Override
