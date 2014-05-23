@@ -47,7 +47,7 @@ public abstract class SwipeableTabsFragment extends BaseSectionFragment implemen
         }
     }
 
-    private int mCurrentColor = 0xFF666666;
+    private int mCurrentColor = 0xFF3A3C40;
     private Drawable oldBackground = null;
     private final Handler handler = new Handler();
 
