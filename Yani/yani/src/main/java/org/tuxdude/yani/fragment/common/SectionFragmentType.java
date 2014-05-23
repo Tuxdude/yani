@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.common;
+package org.tuxdude.yani.fragment.common;
 
 public enum SectionFragmentType {
     SECTION_CONNECTIONS,

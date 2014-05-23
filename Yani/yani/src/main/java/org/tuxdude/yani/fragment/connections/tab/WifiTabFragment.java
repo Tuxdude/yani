@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.connections.tab;
+package org.tuxdude.yani.fragment.connections.tab;
 
 import android.content.Context;
 import android.net.DhcpInfo;
@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.utils.IpAddress;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.utils.IpAddress;
+import org.tuxdude.yani.utils.Logger;
 
 public class WifiTabFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.common;
+package org.tuxdude.yani.fragment.common;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,8 +15,8 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.utils.Logger;
 
 
 public abstract class SwipeableTabsFragment extends BaseSectionFragment implements ITabsManager {

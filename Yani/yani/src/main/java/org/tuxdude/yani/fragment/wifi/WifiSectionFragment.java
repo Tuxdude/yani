@@ -1,13 +1,13 @@
-package com.github.tuxdude.yani.fragment.wifi;
+package org.tuxdude.yani.fragment.wifi;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.common.BaseSectionFragment;
-import com.github.tuxdude.yani.fragment.common.SectionFragmentType;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.fragment.common.BaseSectionFragment;
+import org.tuxdude.yani.fragment.common.SectionFragmentType;
 
 public class WifiSectionFragment extends BaseSectionFragment {
 

@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.utils;
+package org.tuxdude.yani.utils;
 
 public class IpAddress {
     public int octets[] = null;

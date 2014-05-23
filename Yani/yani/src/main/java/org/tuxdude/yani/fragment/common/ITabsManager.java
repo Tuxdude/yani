@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.common;
+package org.tuxdude.yani.fragment.common;
 
 import android.support.v4.app.Fragment;
 

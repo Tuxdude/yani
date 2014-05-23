@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.connections;
+package org.tuxdude.yani.fragment.connections;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.common.SectionFragmentType;
-import com.github.tuxdude.yani.fragment.common.SwipeableTabsFragment;
-import com.github.tuxdude.yani.fragment.connections.tab.BluetoothTabFragment;
-import com.github.tuxdude.yani.fragment.connections.tab.MobileTabFragment;
-import com.github.tuxdude.yani.fragment.connections.tab.WifiTabFragment;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.fragment.common.SectionFragmentType;
+import org.tuxdude.yani.fragment.common.SwipeableTabsFragment;
+import org.tuxdude.yani.fragment.connections.tab.BluetoothTabFragment;
+import org.tuxdude.yani.fragment.connections.tab.MobileTabFragment;
+import org.tuxdude.yani.fragment.connections.tab.WifiTabFragment;
+import org.tuxdude.yani.utils.Logger;
 
 public class ConnectionsSectionFragment extends SwipeableTabsFragment {
 

@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.connections.tab;
+package org.tuxdude.yani.fragment.connections.tab;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.utils.Logger;
 
 public class BluetoothTabFragment extends Fragment {
 

@@ -1,12 +1,12 @@
-package com.github.tuxdude.yani.fragment.common;
+package org.tuxdude.yani.fragment.common;
 
 import android.content.Context;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.connections.ConnectionsSectionFragment;
-import com.github.tuxdude.yani.fragment.mobile.MobileSectionFragment;
-import com.github.tuxdude.yani.fragment.wifi.WifiSectionFragment;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.fragment.connections.ConnectionsSectionFragment;
+import org.tuxdude.yani.fragment.mobile.MobileSectionFragment;
+import org.tuxdude.yani.fragment.wifi.WifiSectionFragment;
+import org.tuxdude.yani.utils.Logger;
 
 import java.util.ArrayList;
 

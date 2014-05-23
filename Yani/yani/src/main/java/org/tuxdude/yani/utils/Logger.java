@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.utils;
+package org.tuxdude.yani.utils;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.fragment.navigationdrawer;
+package org.tuxdude.yani.fragment.navigationdrawer;
 
 
 import android.app.ActionBar;
@@ -22,9 +22,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.common.SectionFragmentsManager;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.fragment.common.SectionFragmentsManager;
+import org.tuxdude.yani.utils.Logger;
 
 import java.util.ArrayList;
 

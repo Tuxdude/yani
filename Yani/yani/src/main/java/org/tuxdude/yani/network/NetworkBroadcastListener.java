@@ -1,12 +1,11 @@
-package com.github.tuxdude.yani.network;
+package org.tuxdude.yani.network;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
-import android.widget.Toast;
 
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.utils.Logger;
 
 public class NetworkBroadcastListener extends BroadcastReceiver {
 

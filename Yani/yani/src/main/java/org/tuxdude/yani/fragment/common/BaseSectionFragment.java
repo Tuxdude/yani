@@ -1,10 +1,10 @@
-package com.github.tuxdude.yani.fragment.common;
+package org.tuxdude.yani.fragment.common;
 
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.utils.Logger;
 
 public abstract class BaseSectionFragment extends Fragment implements ISectionFragment {
 

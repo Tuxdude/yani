@@ -1,4 +1,4 @@
-package com.github.tuxdude.yani.activity;
+package org.tuxdude.yani.activity;
 
 import android.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -13,13 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import com.github.tuxdude.yani.R;
-import com.github.tuxdude.yani.fragment.common.BaseSectionFragment;
-import com.github.tuxdude.yani.fragment.common.ISectionFragment;
-import com.github.tuxdude.yani.fragment.common.SectionFragmentsManager;
-import com.github.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
-import com.github.tuxdude.yani.network.NetworkBroadcastListener;
-import com.github.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.R;
+import org.tuxdude.yani.fragment.common.BaseSectionFragment;
+import org.tuxdude.yani.fragment.common.ISectionFragment;
+import org.tuxdude.yani.fragment.common.SectionFragmentsManager;
+import org.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
+import org.tuxdude.yani.network.NetworkBroadcastListener;
+import org.tuxdude.yani.utils.Logger;
 
 
 public class MainActivity extends FragmentActivity
