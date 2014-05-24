@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity
 
     private CharSequence mTitle;
 
-    private static final String CURRENT_SECTION_TAG = "CURRENT_SECTION_TAG";
+    private static final String TAG_CURRENT_SECTION = "tag_current_section";
     private static final String KEY_LAST_TITLE = "key_last_title";
 
     @Override
@@ -100,7 +100,7 @@ public class MainActivity extends FragmentActivity
 
         if (oldPosition == newPosition && newPosition >= 0) {
             Logger.d("Trying to reuse old fragment");
-            fragment = fragmentManager.findFragmentByTag(CURRENT_SECTION_TAG);
+            fragment = fragmentManager.findFragmentByTag(TAG_CURRENT_SECTION);
             if (fragment == null) {
                 Logger.d("Could not find the fragment by tag");
             }
@@ -108,7 +108,7 @@ public class MainActivity extends FragmentActivity
 
         if (null == fragment) {
             fragment = SectionFragmentsManager.getManager().getFragment(newPosition);
-            transaction.replace(R.id.container, fragment, CURRENT_SECTION_TAG);
+            transaction.replace(R.id.container, fragment, TAG_CURRENT_SECTION);
         }
 
         transaction.commit();
