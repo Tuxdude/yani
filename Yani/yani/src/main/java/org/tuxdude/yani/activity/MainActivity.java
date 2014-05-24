@@ -26,17 +26,12 @@ public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,
         BaseSectionFragment.FragmentEventsListener {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
 
     private static final String CURRENT_SECTION_TAG = "CURRENT_SECTION_TAG";
+    private static final String KEY_LAST_TITLE = "key_last_title";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +41,13 @@ public class MainActivity extends FragmentActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+
+        if (savedInstanceState != null) {
+            mTitle = savedInstanceState.getCharSequence(KEY_LAST_TITLE);
+        }
+        else {
+            mTitle = getTitle();
+        }
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -69,6 +70,12 @@ public class MainActivity extends FragmentActivity
         filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
         filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
         registerReceiver(NetworkBroadcastListener.getInstance(), filter);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putCharSequence(KEY_LAST_TITLE, mTitle);
     }
 
     @Override
