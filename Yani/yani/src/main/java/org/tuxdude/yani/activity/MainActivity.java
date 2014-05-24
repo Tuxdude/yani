@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.view.ViewTreeObserver;
 
 import org.tuxdude.yani.R;
 import org.tuxdude.yani.fragment.common.BaseSectionFragment;
@@ -29,7 +30,7 @@ public class MainActivity extends FragmentActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+    private NavigationDrawerFragment mNavigationDrawerFragment = null;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -37,27 +38,64 @@ public class MainActivity extends FragmentActivity
     private CharSequence mTitle;
 
     private static final String CURRENT_SECTION_TAG = "CURRENT_SECTION_TAG";
+    private static final String NAVIGATION_DRAWER_TAG = "NAVIGATION_DRAWER_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Logger.trace();
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        Fragment fragment = fragmentManager.findFragmentByTag(NAVIGATION_DRAWER_TAG);
+        if (fragment == null) {
+            Logger.d("Could not find existing navigation drawer fragment, creating a new one");
+            fragment = NavigationDrawerFragment.newInstance();
+
+            Bundle args = new Bundle();
+            args.putInt(NavigationDrawerFragment.ARG_NAVIGATION_DRAWER_ID, R.id.navigation_drawer);
+            args.putInt(NavigationDrawerFragment.ARG_DRAWER_LAYOUT_ID, R.id.drawer_layout);
+            fragment.setArguments(args);
+        }
+        else {
+            Logger.d("Found existing navigation drawer fragment");
+        }
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment)fragment;
+
+        transaction.replace(R.id.navigation_drawer, fragment, NAVIGATION_DRAWER_TAG);
+        transaction.commit();
+
+        DrawerLayout layout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        Logger.d("onCreate DrawerLayout: " + layout);
+        ViewTreeObserver vto = layout.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                DrawerLayout layout = (DrawerLayout)findViewById(R.id.drawer_layout);
+                layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                Logger.d("onGlobalLayout DrawerLayout: " + layout);
+
+                mNavigationDrawerFragment.setUp();
+            }
+        });
+
+//        mNavigationDrawerFragment = (NavigationDrawerFragment)fragment;
+//        mNavigationDrawerFragment.setUp();
     }
 
     @Override
     protected void onResume() {
         Logger.trace();
         super.onResume();
+
+        DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Logger.d("DrawerLayout: " + layout);
 
         // Register receiver
         IntentFilter filter = new IntentFilter();
@@ -69,6 +107,27 @@ public class MainActivity extends FragmentActivity
         filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
         filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
         registerReceiver(NetworkBroadcastListener.getInstance(), filter);
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        Logger.trace();
+        super.onAttachFragment(fragment);
+        if (fragment instanceof NavigationDrawerFragment) {
+            Logger.d("Navigation Drawer fragment attached");
+            mNavigationDrawerFragment = (NavigationDrawerFragment)fragment;
+
+            /*
+            // Set up the drawer.
+            mNavigationDrawerFragment.setUp(
+                    R.id.navigation_drawer,
+                    (DrawerLayout) findViewById(R.id.drawer_layout));
+                    */
+            /*
+            mNavigationDrawerFragment.setUp();
+            */
+
+        }
     }
 
     @Override
@@ -88,7 +147,6 @@ public class MainActivity extends FragmentActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = null;
-
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         if (oldPosition == newPosition && newPosition >= 0) {

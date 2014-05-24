@@ -46,6 +46,9 @@ public class NavigationDrawerFragment extends Fragment {
      */
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
+    public static final String ARG_NAVIGATION_DRAWER_ID = "arg_fragment_id";
+    public static final String ARG_DRAWER_LAYOUT_ID = "arg_drawer_layout_id";
+
     /**
      * A pointer to the current callbacks instance (the Activity).
      */
@@ -66,6 +69,11 @@ public class NavigationDrawerFragment extends Fragment {
     private ArrayList<String> mTitles = null;
 
     private static final int DEFAULT_SELECTED_POSITION = 0;
+
+    public static NavigationDrawerFragment newInstance() {
+        Logger.trace();
+        return new NavigationDrawerFragment();
+    }
 
     public NavigationDrawerFragment() {
         Logger.trace();
@@ -129,9 +137,23 @@ public class NavigationDrawerFragment extends Fragment {
         return mDrawerListView;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        Logger.trace();
+        super.onViewCreated(view, savedInstanceState);
+    }
+
     public boolean isDrawerOpen() {
         Logger.trace();
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+    }
+
+    public void setUp() {
+        Logger.trace();
+        Logger.d("DrawerLayout: " + (DrawerLayout) getActivity().findViewById(getArguments().getInt(ARG_DRAWER_LAYOUT_ID)));
+
+        setUp(getArguments().getInt(ARG_NAVIGATION_DRAWER_ID),
+                (DrawerLayout) getActivity().findViewById(getArguments().getInt(ARG_DRAWER_LAYOUT_ID)));
     }
 
     /**
@@ -142,6 +164,7 @@ public class NavigationDrawerFragment extends Fragment {
      */
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
         Logger.trace();
+        Logger.d("Activity: " + getActivity());
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
@@ -232,6 +255,7 @@ public class NavigationDrawerFragment extends Fragment {
     public void onAttach(Activity activity) {
         Logger.trace();
         super.onAttach(activity);
+
         try {
             mCallbacks = (NavigationDrawerCallbacks) activity;
         } catch (ClassCastException e) {
