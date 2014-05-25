@@ -44,5 +44,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:19.+'
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'org.tuxdude:pagerslidingtabstrip:1.0.1.a'
+}
+
+repositories {
+    File localRepoFile = project.file('local.repo.properties')
+    if (localRepoFile.exists()) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(localRepoFile))
+        maven {
+            url props['localRepoUri']
+        }
+    }
+
+    mavenLocal()
 }

@@ -14,7 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.astuetz.PagerSlidingTabStrip;
+import org.tuxdude.PagerSlidingTabStrip;
 import org.tuxdude.yani.R;
 import org.tuxdude.yani.utils.Logger;
 
