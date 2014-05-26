@@ -48,6 +48,10 @@ dependencies {
 }
 
 repositories {
+    maven {
+        url 'https://raw.githubusercontent.com/Tuxdude/maven-artifacts/master'
+    }
+
     File localRepoFile = project.file('local.repo.properties')
     if (localRepoFile.exists()) {
         Properties props = new Properties()
