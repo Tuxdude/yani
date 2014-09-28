@@ -43,8 +43,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:19.+'
-    compile 'org.tuxdude:pagerslidingtabstrip:1.0.1.b'
+    compile 'com.android.support:support-v4:20.+'
+    compile 'org.tuxdude:pagerslidingtabstrip:1.0.1.c'
 }
 
 repositories {
