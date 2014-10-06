@@ -1,6 +1,7 @@
-<configuration>
+<configuration debug="true">
     <contextName>Yani</contextName>
     <property name="LOG_DIR" value="/data/data/org.tuxdude.yani/files/log" />
+    <conversionRule conversionWord="yanihighlight" converterClass="org.tuxdude.yani.utils.HighlightingConverter" />
 
     <!-- Create a simple logcat appender -->
     <appender name="SimpleLogcatAppender" class="ch.qos.logback.classic.android.LogcatAppender">
@@ -19,7 +20,7 @@
             <pattern>%logger{0}%class{0}</pattern>
         </tagEncoder>
         <encoder>
-            <pattern>%msg</pattern>
+            <pattern>%yanihighlight(%msg)</pattern>
         </encoder>
     </appender>
 
@@ -34,7 +35,7 @@
             <pattern>%logger{0}%class{0}</pattern>
         </tagEncoder>
         <encoder>
-            <pattern>%method\(\):%line %msg</pattern>
+            <pattern>%yanihighlight(%method\(\):%line %msg)</pattern>
         </encoder>
     </appender>
 
