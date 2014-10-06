@@ -22,9 +22,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.yani.R;
+import org.tuxdude.yani.common.Constants;
 import org.tuxdude.yani.fragment.common.SectionFragmentsManager;
-import org.tuxdude.yani.utils.Logger;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,8 @@ import java.util.ArrayList;
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
 
     /**
      * Remember the position of the selected item.
@@ -68,12 +72,12 @@ public class NavigationDrawerFragment extends Fragment {
     private static final int DEFAULT_SELECTED_POSITION = 0;
 
     public NavigationDrawerFragment() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onCreate(savedInstanceState);
 
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
@@ -96,7 +100,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onActivityCreated (Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onActivityCreated(savedInstanceState);
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
@@ -105,7 +109,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,7 +121,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         if (mTitles == null) {
             mTitles = SectionFragmentsManager.getSectionTitles(getActivity());
-            Logger.d("Titles: " + mTitles);
+            LOGGER.debug("Titles: " + mTitles);
         }
 
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -130,7 +134,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     public boolean isDrawerOpen() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
     }
 
@@ -141,7 +145,7 @@ public class NavigationDrawerFragment extends Fragment {
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
@@ -164,7 +168,7 @@ public class NavigationDrawerFragment extends Fragment {
         ) {
             @Override
             public void onDrawerClosed(View drawerView) {
-                Logger.trace();
+                LOGGER.trace(Constants.EMPTY_STRING);
                 super.onDrawerClosed(drawerView);
                 if (!isAdded()) {
                     return;
@@ -175,7 +179,7 @@ public class NavigationDrawerFragment extends Fragment {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                Logger.trace();
+                LOGGER.trace(Constants.EMPTY_STRING);
                 super.onDrawerOpened(drawerView);
                 if (!isAdded()) {
                     return;
@@ -212,7 +216,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void selectItem(int position) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
 
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -230,7 +234,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onAttach(activity);
         try {
             mCallbacks = (NavigationDrawerCallbacks) activity;
@@ -241,21 +245,21 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onDetach();
         mCallbacks = null;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_SELECTED_POSITION, mCurrentSelectedPosition);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onConfigurationChanged(newConfig);
         // Forward the new configuration the drawer toggle component.
         mDrawerToggle.onConfigurationChanged(newConfig);
@@ -263,7 +267,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
@@ -275,7 +279,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -293,7 +297,7 @@ public class NavigationDrawerFragment extends Fragment {
      * 'context', rather than just what's in the current screen.
      */
     private void showGlobalContextActionBar() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -301,7 +305,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private ActionBar getActionBar() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         return getActivity().getActionBar();
     }
 

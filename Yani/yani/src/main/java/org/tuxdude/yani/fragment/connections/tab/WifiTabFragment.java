@@ -11,20 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.yani.R;
+import org.tuxdude.yani.common.Constants;
 import org.tuxdude.yani.utils.IpAddress;
-import org.tuxdude.yani.utils.Logger;
+
 
 public class WifiTabFragment extends Fragment {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
+
     public static WifiTabFragment newInstance() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         return new WifiTabFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         View rootView = inflater.inflate(R.layout.tab_connections_wifi, container, false);
 
         TextView tv = (TextView)rootView.findViewById(R.id.section_label);

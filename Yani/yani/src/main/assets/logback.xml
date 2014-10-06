@@ -1,0 +1,63 @@
+<configuration>
+    <contextName>Yani</contextName>
+    <property name="LOG_DIR" value="/data/data/org.tuxdude.yani/files/log" />
+
+    <!-- Create a simple logcat appender -->
+    <appender name="SimpleLogcatAppender" class="ch.qos.logback.classic.android.LogcatAppender">
+        <encoder>
+            <pattern>%msg</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a logcat appender with class name prefixes -->
+    <appender name="ClassNameLogcatAppender" class="ch.qos.logback.classic.android.LogcatAppender">
+        <!-- Deny all events with a log level below DEBUG, i.e. TRACE -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <tagEncoder>
+            <pattern>%logger{0}%class{0}</pattern>
+        </tagEncoder>
+        <encoder>
+            <pattern>%msg</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a logcat appender which prints only trace logs -->
+    <appender name="TraceLogcatAppender" class="ch.qos.logback.classic.android.LogcatAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <tagEncoder>
+            <pattern>%logger{0}%class{0}</pattern>
+        </tagEncoder>
+        <encoder>
+            <pattern>%method\(\):%line %msg</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Create a file appender for TRACE-level messages -->
+    <appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/logcat.log</file>
+        <append>true</append>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %class{0}.%method\(\):%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Write ALL - i.e. TRACE (and higher-level) messages from Yani logger to file -->
+    <logger name="Yani" level="TRACE">
+        <appender-ref ref="FileAppender" />
+    </logger>
+    <!-- Write DEBUG (and higher-level) messages from all loggers to logcat using ClassNameLogcatAppender -->
+    <root level="DEBUG">
+        <appender-ref ref="ClassNameLogcatAppender" />
+    </root>
+    <!-- Write ALL - i.e. TRACE (and higher-level) messages to logcat using TraceLogcatAppender -->
+    <root level="TRACE">
+        <appender-ref ref="TraceLogcatAppender" />
+    </root>
+</configuration>

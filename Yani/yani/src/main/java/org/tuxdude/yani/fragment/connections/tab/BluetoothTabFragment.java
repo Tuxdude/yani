@@ -10,10 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.yani.R;
-import org.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.common.Constants;
+
 
 public class BluetoothTabFragment extends Fragment {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
 
     public static BluetoothTabFragment newInstance() {
         return new BluetoothTabFragment();
@@ -22,7 +27,7 @@ public class BluetoothTabFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         View rootView = inflater.inflate(R.layout.tab_connections_bluetooth, container, false);
 
         TextView tv = (TextView)rootView.findViewById(R.id.section_label);

@@ -13,19 +13,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.yani.R;
+import org.tuxdude.yani.common.Constants;
 import org.tuxdude.yani.fragment.common.BaseSectionFragment;
 import org.tuxdude.yani.fragment.common.ISectionFragment;
 import org.tuxdude.yani.fragment.common.SectionFragmentsManager;
 import org.tuxdude.yani.fragment.navigationdrawer.NavigationDrawerFragment;
 import org.tuxdude.yani.network.NetworkBroadcastListener;
-import org.tuxdude.yani.utils.Logger;
 
 
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,
         BaseSectionFragment.FragmentEventsListener {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
@@ -35,7 +38,7 @@ public class MainActivity extends FragmentActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -57,7 +60,7 @@ public class MainActivity extends FragmentActivity
 
     @Override
     protected void onResume() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onResume();
 
         // Register receiver
@@ -80,7 +83,7 @@ public class MainActivity extends FragmentActivity
 
     @Override
     protected void onPause() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onPause();
 
         // Unregister receiver
@@ -89,7 +92,7 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int oldPosition, int newPosition) {
-        Logger.d("onNavigationDrawerItemSelected oldPosition: " +
+        LOGGER.debug("onNavigationDrawerItemSelected oldPosition: " +
                 oldPosition + " newPosition: " + newPosition);
 
         // update the main content by replacing fragments
@@ -99,10 +102,10 @@ public class MainActivity extends FragmentActivity
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         if (oldPosition == newPosition && newPosition >= 0) {
-            Logger.d("Trying to reuse old fragment");
+            LOGGER.debug("Trying to reuse old fragment");
             fragment = fragmentManager.findFragmentByTag(TAG_CURRENT_SECTION);
             if (fragment == null) {
-                Logger.d("Could not find the fragment by tag");
+                LOGGER.debug("Could not find the fragment by tag");
             }
         }
 
@@ -120,17 +123,17 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public void onFragmentAttached(ISectionFragment fragmentInfo) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         if (fragmentInfo != null) {
             mTitle = fragmentInfo.getSectionTitle();
         }
         else {
-            Logger.e("onFragmentAttached() received null fragmentInfo, unable to set Title");
+            LOGGER.error("onFragmentAttached() received null fragmentInfo, unable to set Title");
         }
     }
 
     public void restoreActionBar() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
@@ -139,7 +142,7 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
@@ -153,7 +156,7 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

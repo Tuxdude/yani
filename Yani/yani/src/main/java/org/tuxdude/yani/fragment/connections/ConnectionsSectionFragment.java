@@ -6,23 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.yani.R;
+import org.tuxdude.yani.common.Constants;
 import org.tuxdude.yani.fragment.common.SectionFragmentType;
 import org.tuxdude.yani.fragment.common.SwipeableTabsFragment;
 import org.tuxdude.yani.fragment.connections.tab.BluetoothTabFragment;
 import org.tuxdude.yani.fragment.connections.tab.MobileTabFragment;
 import org.tuxdude.yani.fragment.connections.tab.WifiTabFragment;
-import org.tuxdude.yani.utils.Logger;
+
 
 public class ConnectionsSectionFragment extends SwipeableTabsFragment {
 
-    // Mapping of tab position to Fragment class name (which provides title)
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
 
     public static ConnectionsSectionFragment newInstance() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         return new ConnectionsSectionFragment();
     }
 
+    // Mapping of tab position to Fragment class name (which provides title)
     @Override
     public SectionFragmentType getFragmentType() {
         return SectionFragmentType.SECTION_CONNECTIONS;
@@ -30,50 +34,50 @@ public class ConnectionsSectionFragment extends SwipeableTabsFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         return inflater.inflate(R.layout.section_connections, container, false);
     }
 
     @Override
     public void onStart() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onStart();
     }
 
     @Override
     public void onResume() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onStop();
     }
 
     @Override
     public void onDestroyView() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onDestroy();
     }
 

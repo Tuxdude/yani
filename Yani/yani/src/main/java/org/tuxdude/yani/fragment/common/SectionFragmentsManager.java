@@ -2,16 +2,19 @@ package org.tuxdude.yani.fragment.common;
 
 import android.content.Context;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.yani.R;
+import org.tuxdude.yani.common.Constants;
 import org.tuxdude.yani.fragment.connections.ConnectionsSectionFragment;
 import org.tuxdude.yani.fragment.mobile.MobileSectionFragment;
 import org.tuxdude.yani.fragment.wifi.WifiSectionFragment;
-import org.tuxdude.yani.utils.Logger;
 
 import java.util.ArrayList;
 
 public class SectionFragmentsManager {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
     private static SectionFragmentsManager manager = null;
 
     public static SectionFragmentsManager getManager() {
@@ -41,7 +44,7 @@ public class SectionFragmentsManager {
             }
         }
         else {
-            Logger.e("getSectionTitle() null context");
+            LOGGER.error("getSectionTitle() null context");
         }
         return title;
     }

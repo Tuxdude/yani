@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import org.tuxdude.yani.utils.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.tuxdude.yani.common.Constants;
 
 public abstract class BaseSectionFragment extends Fragment implements ISectionFragment {
 
@@ -12,11 +14,13 @@ public abstract class BaseSectionFragment extends Fragment implements ISectionFr
         public void onFragmentAttached(ISectionFragment fragmentInfo);
     }
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
+
     protected Context mContext = null;
 
     @Override
     public void onAttach(Activity activity) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         super.onAttach(activity);
         mContext = activity;
 
@@ -31,7 +35,7 @@ public abstract class BaseSectionFragment extends Fragment implements ISectionFr
 
     @Override
     public void onDetach() {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         mContext = null;
         super.onDetach();
     }

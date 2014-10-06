@@ -14,13 +14,16 @@ import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tuxdude.PagerSlidingTabStrip;
 import org.tuxdude.yani.R;
-import org.tuxdude.yani.utils.Logger;
+import org.tuxdude.yani.common.Constants;
 
 
 public abstract class SwipeableTabsFragment extends BaseSectionFragment implements ITabsManager {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.LOGGER_NAME);
     private PagerSlidingTabStrip mTabs = null;
 
     class TabsPagerAdapter extends FragmentPagerAdapter {
@@ -31,7 +34,7 @@ public abstract class SwipeableTabsFragment extends BaseSectionFragment implemen
 
         @Override
         public Fragment getItem(int position) {
-            Logger.d("getItem() " + position);
+            LOGGER.debug("getItem() " + position);
             // Return the Fragment which corresponds to the tab at position
             return getTab(position);
         }
@@ -118,7 +121,7 @@ public abstract class SwipeableTabsFragment extends BaseSectionFragment implemen
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Logger.trace();
+        LOGGER.trace(Constants.EMPTY_STRING);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         viewPager.setAdapter(new TabsPagerAdapter(getChildFragmentManager()));
 
