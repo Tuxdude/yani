@@ -1,7 +1,8 @@
 <configuration debug="true">
     <contextName>Yani</contextName>
     <property name="LOG_DIR" value="/data/data/org.tuxdude.yani/files/log" />
-    <conversionRule conversionWord="yanihighlight" converterClass="org.tuxdude.yani.utils.HighlightingConverter" />
+    <property name="COLORIZER_COLORS" value="red@,yellow@,green@,blue@,cyan@" />
+    <conversionRule conversionWord="colorize" converterClass="org.tuxdude.logback.extensions.LogColorizer" />
 
     <!-- Create a simple logcat appender -->
     <appender name="SimpleLogcatAppender" class="ch.qos.logback.classic.android.LogcatAppender">
@@ -20,7 +21,7 @@
             <pattern>%logger{0}%class{0}</pattern>
         </tagEncoder>
         <encoder>
-            <pattern>%yanihighlight(%msg)</pattern>
+            <pattern>%colorize(%msg)</pattern>
         </encoder>
     </appender>
 
@@ -35,7 +36,7 @@
             <pattern>%logger{0}%class{0}</pattern>
         </tagEncoder>
         <encoder>
-            <pattern>%yanihighlight(%method\(\):%line %msg)</pattern>
+            <pattern>%colorize(%method\(\):%line %msg)</pattern>
         </encoder>
     </appender>
 
