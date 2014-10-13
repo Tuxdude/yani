@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 
     File releasePropertiesFile = project.file('release.properties')
     if (releasePropertiesFile.exists()) {
