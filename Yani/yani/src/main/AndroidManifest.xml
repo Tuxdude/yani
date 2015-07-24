@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2015 Ash [Tuxdude] <tuxdude.io@gmail.com>
+  
+    This file is part of yani.
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.tuxdude.yani" >
 
+    <!-- Invoke WifiManager -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Invoke ConnectivityManager -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Invoke hidden WifiManager APIs -->
+    <!-- This is a System/Signature permission which Android is going to deny us anyways -->
+    <uses-permission android:name="android.permission.READ_WIFI_CREDENTIAL" />
 
     <application
         android:allowBackup="true"
@@ -11,14 +34,23 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.tuxdude.yani.activity.MainActivity"
+            android:name="org.tuxdude.yani.activity.NavActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".service.YaniService"
+            android:exported="false"
+            android:process=":service" />
+        <meta-data
+            android:name="org.tuxdude.yani.SERVICE_PACKAGE"
+            android:value="org.tuxdude.yani" />
+        <meta-data
+            android:name="org.tuxdude.yani.SERVICE_CLASS"
+            android:value="org.tuxdude.yani.service.YaniService" />
     </application>
 
 </manifest>
